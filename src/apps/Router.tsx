@@ -1,8 +1,8 @@
 import { createRoutesFromChildren, Route } from "react-router-dom";
 
-import HomePage from "@/pages/home";
+import { RootLayout } from "@/components/layouts/RootLayout";
 
-import { RootLayout } from "@/layouts/RootLayout";
+import HomePage from "@/pages/home/HomePage";
 
 export const router = createRoutesFromChildren(
     <Route path="/" element={<RootLayout />}>
