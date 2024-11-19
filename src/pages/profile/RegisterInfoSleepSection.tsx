@@ -36,9 +36,8 @@ export default function RegisterInfoSleepSection() {
 
     return (
         <div className="flex flex-col justify-between h-full">
-            <h1 className="my-2 text-2xl font-bold">수면습관</h1>
-
             <div className="flex flex-col gap-2">
+                <h1 className="my-2 text-2xl font-bold">수면습관</h1>
                 <DoubleSliderWithLabelForm
                     label="기상시간"
                     labelCallback={(value) => (
@@ -70,17 +69,14 @@ export default function RegisterInfoSleepSection() {
                     defaultValue={[21, 29]}
                 />
 
-                <DoubleSliderWithLabelForm
+                <SelectorWithLabelForm
                     label="잠귀"
-                    labelCallback={(value) => (
-                        <span className="my-1 text-sm text-nowrap">{value}</span>
-                    )}
-                    value={sleepNoiseResist}
-                    onValueChange={setSleepNoiseResist}
-                    min={1}
-                    max={5}
-                    step={1}
-                    defaultValue={[3]}
+                    placeholder="잠귀를 선택해주세요"
+                    items={[
+                        { label: "밝음", value: "bright" },
+                        { label: "보통", value: "normal" },
+                        { label: "어두움", value: "dark" },
+                    ]}
                 />
 
                 <SelectorWithLabelForm
