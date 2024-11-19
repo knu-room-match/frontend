@@ -22,6 +22,8 @@
         "noFallthroughCasesInSwitch": true,
         "noUncheckedSideEffectImports": true,
 
+        "typeRoots": ["node_modules", "src/@types"],
+
         "baseUrl": ".",
         "paths": {
             "@/*": ["./src/*"]

@@ -26,7 +26,7 @@ export default function HomePage() {
                     <Button variant="default" onClick={() => navigate("/auth/signin")}>
                         로그인
                     </Button>
-                    <Button variant="outline" onClick={() => navigate("/roommates")}>
+                    <Button variant="outline" onClick={() => navigate("/match")}>
                         룸메이트 둘러보기
                     </Button>
                 </div>
