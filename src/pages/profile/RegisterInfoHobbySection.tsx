@@ -1,4 +1,4 @@
-import { SelectorWithLabelForm } from "@/components/common/forms/SelectorWithLabelForm";
+import { SelectorWithLabelForm } from "@/components/forms/SelectorWithLabelForm";
 import { Button } from "@/components/ui/button";
 
 import { useSection } from "@/common/hooks/useSection";

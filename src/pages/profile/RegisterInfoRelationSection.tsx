@@ -1,7 +1,7 @@
 import { useState } from "react";
 
-import { SelectorWithLabelForm } from "@/components/common/forms/SelectorWithLabelForm";
-import { SliderWithLabelForm } from "@/components/common/forms/SliderWithLabelForm";
+import { SelectorWithLabelForm } from "@/components/forms/SelectorWithLabelForm";
+import { SliderWithLabelForm } from "@/components/forms/SliderWithLabelForm";
 import { Button } from "@/components/ui/button";
 import { Slider } from "@/components/ui/slider";
 

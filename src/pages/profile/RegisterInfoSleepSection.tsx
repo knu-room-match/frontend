@@ -1,8 +1,8 @@
 import { useState } from "react";
 
-import { RadioWithLabelForm } from "@/components/common/forms/RadioWithLabelForm";
-import { SelectorWithLabelForm } from "@/components/common/forms/SelectorWithLabelForm";
-import { DoubleSliderWithLabelForm } from "@/components/common/forms/SliderWithLabelForm";
+import { RadioWithLabelForm } from "@/components/forms/RadioWithLabelForm";
+import { SelectorWithLabelForm } from "@/components/forms/SelectorWithLabelForm";
+import { DoubleSliderWithLabelForm } from "@/components/forms/SliderWithLabelForm";
 import { Button } from "@/components/ui/button";
 
 import { useSection } from "@/common/hooks/useSection";
