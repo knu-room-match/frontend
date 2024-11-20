@@ -1,8 +1,7 @@
-import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { registerInfoActions } from "@/apps/store/register-info.slice";
-import { RootDispatch } from "@/apps/store/store";
+import { RootDispatch, RootState } from "@/apps/store/store";
 
 import { SelectorWithLabelForm } from "@/components/forms/SelectorWithLabelForm";
 import { SliderWithLabelForm } from "@/components/forms/SliderWithLabelForm";
@@ -13,9 +12,8 @@ import { useSection } from "@/common/hooks/useSection";
 export default function RegisterInfoRelationSection() {
     const { nextSection, prevSection } = useSection();
 
-    const [relationShip, setRelationShip] = useState([3]);
-
     const dispatch: RootDispatch = useDispatch();
+    const registerInfo = useSelector((state: RootState) => state.registerInfo);
 
     return (
         <div className="flex flex-col justify-between h-full">
@@ -29,10 +27,11 @@ export default function RegisterInfoRelationSection() {
                     minValue={1}
                     maxValue={5}
                     step={1}
+                    value={registerInfo.roomMateRelation}
                     onChange={(value) => {
                         dispatch(
                             registerInfoActions.setRegisterInfo({
-                                relationShip: value,
+                                roomMateRelation: value,
                             }),
                         );
                     }}
@@ -46,10 +45,11 @@ export default function RegisterInfoRelationSection() {
                         { value: "approve", label: "사전허락" },
                         { value: "regardless", label: "상관없음" },
                     ]}
+                    value={registerInfo.roomMateShare}
                     onValueChange={(value) => {
                         dispatch(
                             registerInfoActions.setRegisterInfo({
-                                relationShip: value,
+                                roomMateShare: value,
                             }),
                         );
                     }}
@@ -64,10 +64,11 @@ export default function RegisterInfoRelationSection() {
                         { value: "approve", label: "사전허락" },
                         { value: "싫음", label: "hate" },
                     ]}
+                    value={registerInfo.friendsInvitation}
                     onValueChange={(value) => {
                         dispatch(
                             registerInfoActions.setRegisterInfo({
-                                relationShip: value,
+                                friendsInvitation: value,
                             }),
                         );
                     }}

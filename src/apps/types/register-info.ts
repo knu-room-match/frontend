@@ -20,7 +20,7 @@ export interface RegisterInfoEnvProperties {
 
 // 관계 관련 정보
 export interface RegisterInfoRelationProperties {
-    roomMateRelation: string; // 룸메이트와의 관계
+    roomMateRelation: number[]; // 룸메이트와의 관계
     roomMateShare: string; // 물건 룸메이트와의 공유 여부
     friendsInvitation: string; // 친구 초대 여부
     returnHomeFrequency: string; // 귀가 빈도

@@ -14,7 +14,7 @@ const initialState: RegisterInfoProperties = {
     cleanCycle: "",
     showerDuration: "",
     bug: "",
-    roomMateRelation: "",
+    roomMateRelation: [3],
     roomMateShare: "",
     friendsInvitation: "",
     returnHomeFrequency: "",
