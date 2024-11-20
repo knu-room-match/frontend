@@ -11,6 +11,7 @@ export interface SliderWithLabelFormProps {
     maxValue: number;
     step: number;
 
+    value: number[];
     onChange: (value: number[]) => void;
 }
 
@@ -21,9 +22,11 @@ export const SliderWithLabelForm = ({
     minValue,
     maxValue,
     step,
+
+    value,
     onChange,
 }: SliderWithLabelFormProps) => {
-    const [sliderValue, setSliderValue] = useState<number[]>([3]);
+    const [sliderValue, setSliderValue] = useState<number[]>(value);
 
     useEffect(
         function onSliderValueChange() {
