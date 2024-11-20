@@ -1,7 +1,7 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { registerInfoActions } from "@/apps/store/register-info.slice";
-import { RootDispatch } from "@/apps/store/store";
+import { RootDispatch, RootState } from "@/apps/store/store";
 
 import { SelectorWithLabelForm } from "@/components/forms/SelectorWithLabelForm";
 import { Button } from "@/components/ui/button";
@@ -12,6 +12,7 @@ export default function RegisterInfoHobbySection() {
     const { prevSection, nextSection } = useSection();
 
     const dispatch: RootDispatch = useDispatch();
+    const registerInfo = useSelector((state: RootState) => state.registerInfo);
 
     return (
         <div className="flex flex-col justify-between h-full">
@@ -26,6 +27,7 @@ export default function RegisterInfoHobbySection() {
                         { value: "library", label: "도서관" },
                         { value: "studyroom", label: "자습실" },
                     ]}
+                    value={registerInfo.studyArea}
                     onValueChange={(value) => {
                         dispatch(
                             registerInfoActions.setRegisterInfo({
@@ -44,6 +46,7 @@ export default function RegisterInfoHobbySection() {
                         { value: "often", label: "자주" },
                         { value: "daily", label: "매일" },
                     ]}
+                    value={registerInfo.workoutFrequency}
                     onValueChange={(value) => {
                         dispatch(
                             registerInfoActions.setRegisterInfo({
@@ -63,6 +66,7 @@ export default function RegisterInfoHobbySection() {
                         { value: "evening", label: "저녁" },
                         { value: "night", label: "밤" },
                     ]}
+                    value={registerInfo.workoutTime}
                     onValueChange={(value) => {
                         dispatch(
                             registerInfoActions.setRegisterInfo({
@@ -81,6 +85,7 @@ export default function RegisterInfoHobbySection() {
                         { value: "often", label: "자주" },
                         { value: "daily", label: "매일" },
                     ]}
+                    value={registerInfo.gameType}
                     onValueChange={(value) => {
                         dispatch(
                             registerInfoActions.setRegisterInfo({
@@ -99,6 +104,7 @@ export default function RegisterInfoHobbySection() {
                         { value: "often", label: "자주" },
                         { value: "daily", label: "매일" },
                     ]}
+                    value={registerInfo.alcohol}
                     onValueChange={(value) => {
                         dispatch(
                             registerInfoActions.setRegisterInfo({
@@ -116,6 +122,7 @@ export default function RegisterInfoHobbySection() {
                         { value: "ecigar", label: "전자담배" },
                         { value: "cigar", label: "연초" },
                     ]}
+                    value={registerInfo.smoking}
                     onValueChange={(value) => {
                         dispatch(
                             registerInfoActions.setRegisterInfo({
