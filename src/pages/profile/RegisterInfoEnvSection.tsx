@@ -1,4 +1,8 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+
+import { registerInfoActions } from "@/apps/store/register-info.slice";
+import { RootDispatch } from "@/apps/store/store";
 
 import { SelectorWithLabelForm } from "@/components/forms/SelectorWithLabelForm";
 import { SliderWithLabelForm } from "@/components/forms/SliderWithLabelForm";
@@ -13,6 +17,8 @@ export default function RegisterInfoEnvSection() {
     const [cold, setCold] = useState([3]);
     const [dirty, setDirty] = useState([3]);
 
+    const dispatch: RootDispatch = useDispatch();
+
     return (
         <div className="flex flex-col justify-between h-full">
             <div>
@@ -25,7 +31,13 @@ export default function RegisterInfoEnvSection() {
                     minValue={1}
                     maxValue={5}
                     step={1}
-                    onChange={setHeat}
+                    onChange={(value) =>
+                        dispatch(
+                            registerInfoActions.setRegisterInfo({
+                                heat: value,
+                            }),
+                        )
+                    }
                 />
 
                 <SliderWithLabelForm
@@ -35,7 +47,13 @@ export default function RegisterInfoEnvSection() {
                     minValue={1}
                     maxValue={5}
                     step={1}
-                    onChange={setCold}
+                    onChange={(value) => {
+                        dispatch(
+                            registerInfoActions.setRegisterInfo({
+                                cold: value,
+                            }),
+                        );
+                    }}
                 />
 
                 <SliderWithLabelForm
@@ -45,7 +63,13 @@ export default function RegisterInfoEnvSection() {
                     minValue={1}
                     maxValue={5}
                     step={1}
-                    onChange={setDirty}
+                    onChange={(value) => {
+                        dispatch(
+                            registerInfoActions.setRegisterInfo({
+                                dirty: value,
+                            }),
+                        );
+                    }}
                 />
 
                 <SelectorWithLabelForm
@@ -56,6 +80,13 @@ export default function RegisterInfoEnvSection() {
                         { value: "3-4times", label: "주 3~4회" },
                         { value: "daily", label: "매일" },
                     ]}
+                    onValueChange={(value) => {
+                        dispatch(
+                            registerInfoActions.setRegisterInfo({
+                                cleanCycle: value,
+                            }),
+                        );
+                    }}
                 />
 
                 <SelectorWithLabelForm
@@ -70,6 +101,13 @@ export default function RegisterInfoEnvSection() {
                         { value: "30min", label: "30분" },
                         { value: "40min", label: "40분 이상" },
                     ]}
+                    onValueChange={(value) => {
+                        dispatch(
+                            registerInfoActions.setRegisterInfo({
+                                showerDuration: value,
+                            }),
+                        );
+                    }}
                 />
 
                 <SelectorWithLabelForm
@@ -82,6 +120,13 @@ export default function RegisterInfoEnvSection() {
                         { value: "catch", label: "잘잡음" },
                         { value: "hate", label: "싫어함" },
                     ]}
+                    onValueChange={(value) => {
+                        dispatch(
+                            registerInfoActions.setRegisterInfo({
+                                bug: value,
+                            }),
+                        );
+                    }}
                 />
             </div>
 
