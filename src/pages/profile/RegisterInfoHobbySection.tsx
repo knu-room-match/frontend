@@ -1,3 +1,8 @@
+import { useDispatch } from "react-redux";
+
+import { registerInfoActions } from "@/apps/store/register-info.slice";
+import { RootDispatch } from "@/apps/store/store";
+
 import { SelectorWithLabelForm } from "@/components/forms/SelectorWithLabelForm";
 import { Button } from "@/components/ui/button";
 
@@ -5,6 +10,8 @@ import { useSection } from "@/common/hooks/useSection";
 
 export default function RegisterInfoHobbySection() {
     const { prevSection, nextSection } = useSection();
+
+    const dispatch: RootDispatch = useDispatch();
 
     return (
         <div className="flex flex-col justify-between h-full">
@@ -19,6 +26,13 @@ export default function RegisterInfoHobbySection() {
                         { value: "library", label: "도서관" },
                         { value: "studyroom", label: "자습실" },
                     ]}
+                    onValueChange={(value) => {
+                        dispatch(
+                            registerInfoActions.setRegisterInfo({
+                                studyArea: value,
+                            }),
+                        );
+                    }}
                 />
 
                 <SelectorWithLabelForm
@@ -30,6 +44,13 @@ export default function RegisterInfoHobbySection() {
                         { value: "often", label: "자주" },
                         { value: "daily", label: "매일" },
                     ]}
+                    onValueChange={(value) => {
+                        dispatch(
+                            registerInfoActions.setRegisterInfo({
+                                workoutFrequency: value,
+                            }),
+                        );
+                    }}
                 />
 
                 <SelectorWithLabelForm
@@ -42,6 +63,13 @@ export default function RegisterInfoHobbySection() {
                         { value: "evening", label: "저녁" },
                         { value: "night", label: "밤" },
                     ]}
+                    onValueChange={(value) => {
+                        dispatch(
+                            registerInfoActions.setRegisterInfo({
+                                workoutTime: value,
+                            }),
+                        );
+                    }}
                 />
 
                 <SelectorWithLabelForm
@@ -53,6 +81,13 @@ export default function RegisterInfoHobbySection() {
                         { value: "often", label: "자주" },
                         { value: "daily", label: "매일" },
                     ]}
+                    onValueChange={(value) => {
+                        dispatch(
+                            registerInfoActions.setRegisterInfo({
+                                gameType: value,
+                            }),
+                        );
+                    }}
                 />
 
                 <SelectorWithLabelForm
@@ -64,6 +99,13 @@ export default function RegisterInfoHobbySection() {
                         { value: "often", label: "자주" },
                         { value: "daily", label: "매일" },
                     ]}
+                    onValueChange={(value) => {
+                        dispatch(
+                            registerInfoActions.setRegisterInfo({
+                                alcohol: value,
+                            }),
+                        );
+                    }}
                 />
 
                 <SelectorWithLabelForm
@@ -74,6 +116,13 @@ export default function RegisterInfoHobbySection() {
                         { value: "ecigar", label: "전자담배" },
                         { value: "cigar", label: "연초" },
                     ]}
+                    onValueChange={(value) => {
+                        dispatch(
+                            registerInfoActions.setRegisterInfo({
+                                smoking: value,
+                            }),
+                        );
+                    }}
                 />
             </div>
 
