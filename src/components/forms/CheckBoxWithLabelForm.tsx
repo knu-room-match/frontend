@@ -10,15 +10,17 @@ export type CheckBoxItem = {
 export interface RadioWithLabelFormProps {
     label: string;
     items: CheckBoxItem[];
+    checkedValues: string[];
     onCheckedValuesChange?: (checkedIds: string[]) => void;
 }
 
 export const CheckBoxWithLabelForm = ({
     label,
     items,
+    checkedValues,
     onCheckedValuesChange,
 }: RadioWithLabelFormProps) => {
-    const [checked, setChecked] = useState<string[]>([]);
+    const [checked, setChecked] = useState<string[]>(checkedValues);
 
     useEffect(() => {
         onCheckedValuesChange && onCheckedValuesChange(checked);

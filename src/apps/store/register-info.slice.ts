@@ -1,12 +1,13 @@
+import { RegisterInfoProperties } from "../types/register-info";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 const initialState: RegisterInfoProperties = {
-    wakeUpTime: [],
-    sleepTime: [],
-    sleepNoiseResist: [],
+    wakeUpTime: [4, 12],
+    sleepTime: [21, 29],
+    sleepNoiseResist: "",
     sleepLight: "",
     alarmSetting: "",
-    sleepHabit: "",
+    sleepHabit: [],
     heat: [],
     cold: [],
     dirty: [],

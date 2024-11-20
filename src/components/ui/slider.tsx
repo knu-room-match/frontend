@@ -20,7 +20,7 @@ const Slider = React.forwardRef<
 ));
 Slider.displayName = SliderPrimitive.Root.displayName;
 
-interface DualRangeSliderProps extends React.ComponentProps<typeof SliderPrimitive.Root> {
+export interface DualRangeSliderProps extends React.ComponentProps<typeof SliderPrimitive.Root> {
     labelPosition?: "top" | "bottom";
     label?: (value: number | undefined) => React.ReactNode;
 }

@@ -1,8 +1,7 @@
-import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { registerInfoActions } from "@/apps/store/register-info.slice";
-import { RootDispatch } from "@/apps/store/store";
+import { RootDispatch, RootState } from "@/apps/store/store";
 
 import { CheckBoxWithLabelForm } from "@/components/forms/CheckBoxWithLabelForm";
 import { SelectorWithLabelForm } from "@/components/forms/SelectorWithLabelForm";
@@ -12,40 +11,36 @@ import { Button } from "@/components/ui/button";
 import { useSection } from "@/common/hooks/useSection";
 
 export default function RegisterInfoSleepSection() {
-    const [wakeUpTime, setWakeUpTime] = useState([4, 12]);
-    const [sleepTime, setSleepTime] = useState([21, 29]);
-    const [sleepNoiseResist, setSleepNoiseResist] = useState([3]);
-
     const { prevSection, nextSection } = useSection();
 
     const dispatch: RootDispatch = useDispatch();
+    const registerInfo = useSelector((state: RootState) => state.registerInfo);
 
     return (
         <div className="flex flex-col justify-between h-full">
             <div className="flex flex-col gap-2">
                 <h1 className="my-2 text-2xl font-bold">수면습관</h1>
                 <DoubleSliderWithLabelForm
-                    label="기상시간"
-                    labelCallback={(value) => (
-                        <span className="my-1 text-sm text-nowrap">{value}시</span>
-                    )}
-                    value={wakeUpTime}
-                    onValueChange={(value) =>
+                    formLabel="기상시간"
+                    label={(value) => <span className="my-1 text-sm text-nowrap">{value}시</span>}
+                    value={registerInfo.wakeUpTime}
+                    onValueChange={(value) => {
                         dispatch(
                             registerInfoActions.setRegisterInfo({
+                                ...registerInfo,
                                 wakeUpTime: value,
                             }),
-                        )
-                    }
+                        );
+                    }}
                     min={4}
                     max={12}
                     step={1}
-                    defaultValue={[4, 12]}
+                    defaultValue={registerInfo.wakeUpTime}
                 />
 
                 <DoubleSliderWithLabelForm
-                    label="취침시간"
-                    labelCallback={(value) => {
+                    formLabel="취침시간"
+                    label={(value) => {
                         if (!value) return;
                         return (
                             <span className="my-1 text-sm text-nowrap">
@@ -53,14 +48,15 @@ export default function RegisterInfoSleepSection() {
                             </span>
                         );
                     }}
-                    value={sleepTime}
-                    onValueChange={(value) =>
+                    value={registerInfo.sleepTime}
+                    onValueChange={(value) => {
                         dispatch(
                             registerInfoActions.setRegisterInfo({
+                                ...registerInfo,
                                 sleepTime: value,
                             }),
-                        )
-                    }
+                        );
+                    }}
                     min={21}
                     max={29}
                     step={1}
@@ -75,9 +71,11 @@ export default function RegisterInfoSleepSection() {
                         { label: "보통", value: "normal" },
                         { label: "어두움", value: "dark" },
                     ]}
+                    value={registerInfo.sleepNoiseResist}
                     onValueChange={(value) => {
                         dispatch(
                             registerInfoActions.setRegisterInfo({
+                                ...registerInfo,
                                 sleepNoiseResist: value,
                             }),
                         );
@@ -92,9 +90,11 @@ export default function RegisterInfoSleepSection() {
                         { label: "수면등", value: "sleeplight" },
                         { label: "스탠드", value: "stand" },
                     ]}
+                    value={registerInfo.sleepLight}
                     onValueChange={(value) => {
                         dispatch(
                             registerInfoActions.setRegisterInfo({
+                                ...registerInfo,
                                 sleepLight: value,
                             }),
                         );
@@ -109,9 +109,11 @@ export default function RegisterInfoSleepSection() {
                         { label: "10분 마다", value: "every10min" },
                         { label: "한번만", value: "once" },
                     ]}
+                    value={registerInfo.alarmSetting}
                     onValueChange={(value) => {
                         dispatch(
                             registerInfoActions.setRegisterInfo({
+                                ...registerInfo,
                                 alarmSetting: value,
                             }),
                         );
@@ -121,14 +123,16 @@ export default function RegisterInfoSleepSection() {
                 <CheckBoxWithLabelForm
                     label="잠버릇"
                     items={[
-                        { id: "sleep-habit__teeth", label: "이갈이" },
-                        { id: "sleep-habit__nose", label: "코골이" },
-                        { id: "sleep-habit__sleeptalking", label: "잠꼬대" },
-                        { id: "sleep-habit__wriggle", label: "몸부림" },
+                        { id: "teeth", label: "이갈이" },
+                        { id: "nose", label: "코골이" },
+                        { id: "sleeptalking", label: "잠꼬대" },
+                        { id: "wriggle", label: "몸부림" },
                     ]}
+                    checkedValues={registerInfo.sleepHabit}
                     onCheckedValuesChange={(checkedIds) => {
                         dispatch(
                             registerInfoActions.setRegisterInfo({
+                                ...registerInfo,
                                 sleepHabit: checkedIds,
                             }),
                         );

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import { DualRangeSlider, Slider } from "@/components/ui/slider";
+import { DualRangeSlider, DualRangeSliderProps, Slider } from "@/components/ui/slider";
 
 export interface SliderWithLabelFormProps {
     label: string;
@@ -53,44 +53,22 @@ export const SliderWithLabelForm = ({
     );
 };
 
-export interface DoubleSliderWithLabelFormProps {
-    label: string;
-    labelCallback: (value?: number) => React.ReactNode;
-
-    value: number[];
-    onValueChange: (value: number[]) => void;
-
-    min: number;
-    max: number;
-    step: number;
-    defaultValue: number[];
+export interface DoubleSliderWithLabelFormProps extends DualRangeSliderProps {
+    formLabel: string;
 }
 
 export const DoubleSliderWithLabelForm = ({
-    label,
-    labelCallback,
-    value,
-    onValueChange,
-
-    min,
-    max,
-    step,
-    defaultValue,
+    formLabel,
+    ...dualRangeSliderProps
 }: DoubleSliderWithLabelFormProps) => {
     return (
         <div>
-            <p className="font-bold">{label}</p>
+            <p className="font-bold">{formLabel}</p>
             <div className="px-2">
                 <DualRangeSlider
                     className="pt-4 pb-10 text-gray-500"
-                    label={labelCallback}
                     labelPosition="bottom"
-                    value={value}
-                    onValueChange={onValueChange}
-                    min={min}
-                    max={max}
-                    step={step}
-                    defaultValue={defaultValue}
+                    {...dualRangeSliderProps}
                 />
             </div>
         </div>
