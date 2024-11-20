@@ -1,0 +1,16 @@
+{
+    "compilerOptions": {
+        "typeRoots": ["node_modules/@types", "src/@types"],
+        "types": ["jest"],
+
+        "esModuleInterop": true,
+        "jsx": "react-jsx",
+        "allowJs": true,
+
+        "baseUrl": ".",
+        "paths": {
+            "@/*": ["./src/*"]
+        }
+    },
+    "include": ["src/**/*.test.{ts,tsx}", "jest.config.ts", "jest.setup.ts"]
+}
