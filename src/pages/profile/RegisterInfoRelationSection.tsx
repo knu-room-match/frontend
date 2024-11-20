@@ -1,4 +1,8 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+
+import { registerInfoActions } from "@/apps/store/register-info.slice";
+import { RootDispatch } from "@/apps/store/store";
 
 import { SelectorWithLabelForm } from "@/components/forms/SelectorWithLabelForm";
 import { SliderWithLabelForm } from "@/components/forms/SliderWithLabelForm";
@@ -10,6 +14,8 @@ export default function RegisterInfoRelationSection() {
     const { nextSection, prevSection } = useSection();
 
     const [relationShip, setRelationShip] = useState([3]);
+
+    const dispatch: RootDispatch = useDispatch();
 
     return (
         <div className="flex flex-col justify-between h-full">
@@ -23,7 +29,13 @@ export default function RegisterInfoRelationSection() {
                     minValue={1}
                     maxValue={5}
                     step={1}
-                    onChange={(value) => setRelationShip(value)}
+                    onChange={(value) => {
+                        dispatch(
+                            registerInfoActions.setRegisterInfo({
+                                relationShip: value,
+                            }),
+                        );
+                    }}
                 />
 
                 <SelectorWithLabelForm
@@ -34,6 +46,13 @@ export default function RegisterInfoRelationSection() {
                         { value: "approve", label: "사전허락" },
                         { value: "regardless", label: "상관없음" },
                     ]}
+                    onValueChange={(value) => {
+                        dispatch(
+                            registerInfoActions.setRegisterInfo({
+                                relationShip: value,
+                            }),
+                        );
+                    }}
                 />
 
                 <SelectorWithLabelForm
@@ -45,6 +64,13 @@ export default function RegisterInfoRelationSection() {
                         { value: "approve", label: "사전허락" },
                         { value: "싫음", label: "hate" },
                     ]}
+                    onValueChange={(value) => {
+                        dispatch(
+                            registerInfoActions.setRegisterInfo({
+                                relationShip: value,
+                            }),
+                        );
+                    }}
                 />
 
                 <SelectorWithLabelForm
@@ -56,6 +82,13 @@ export default function RegisterInfoRelationSection() {
                         { value: "2weekly", label: "2주마다" },
                         { value: "monthly", label: "매달" },
                     ]}
+                    onValueChange={(value) => {
+                        dispatch(
+                            registerInfoActions.setRegisterInfo({
+                                relationShip: value,
+                            }),
+                        );
+                    }}
                 />
             </div>
 
