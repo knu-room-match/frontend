@@ -5,7 +5,7 @@ import { SliderWithLabelForm } from "@/components/common/forms/SliderWithLabelFo
 import { Button } from "@/components/ui/button";
 import { Slider } from "@/components/ui/slider";
 
-import { useSection } from "@/hooks/useSection";
+import { useSection } from "@/common/hooks/useSection";
 
 export interface RegisterInfoRelationType {
     roomMateRelation: string;

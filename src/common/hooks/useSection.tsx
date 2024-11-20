@@ -1,7 +1,7 @@
 import { useCallback, useEffect } from "react";
 import { useLocation, useSearchParams } from "react-router-dom";
 
-import { useSectionContext } from "@/contexts/useSectionContext";
+import { useSectionContext } from "@/common/contexts/useSectionContext";
 
 export const useSection = () => {
     const [searchParams, setSearchParams] = useSearchParams();

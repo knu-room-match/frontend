@@ -1,12 +1,11 @@
 import { useNavigate, useSearchParams } from "react-router-dom";
 
-import { useSection } from "@/hooks/useSection";
-
 import RegisterInfoEnvSection from "./RegisterInfoEnvSection";
 import RegisterInfoHobbySection from "./RegisterInfoHobbySection";
 import RegisterInfoRelationSection from "./RegisterInfoRelationSection";
 import RegisterInfoSleepSection from "./RegisterInfoSleepSection";
-import { SectionContextProvider } from "@/contexts/SectionContext";
+import { SectionContextProvider } from "@/common/contexts/SectionContext";
+import { useSection } from "@/common/hooks/useSection";
 import { RegisterInfoContextProvider } from "@/domains/profile/contexts/RegisterInfoContext";
 
 const sections = [

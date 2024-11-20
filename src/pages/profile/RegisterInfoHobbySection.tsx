@@ -1,7 +1,7 @@
 import { SelectorWithLabelForm } from "@/components/common/forms/SelectorWithLabelForm";
 import { Button } from "@/components/ui/button";
 
-import { useSection } from "@/hooks/useSection";
+import { useSection } from "@/common/hooks/useSection";
 
 export interface RegisterInfoHobbyType {
     studyArea: string;

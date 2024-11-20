@@ -4,7 +4,7 @@ import { SelectorWithLabelForm } from "@/components/common/forms/SelectorWithLab
 import { SliderWithLabelForm } from "@/components/common/forms/SliderWithLabelForm";
 import { Button } from "@/components/ui/button";
 
-import { useSection } from "@/hooks/useSection";
+import { useSection } from "@/common/hooks/useSection";
 
 export interface RegisterInfoEnvType {
     heat: number[];

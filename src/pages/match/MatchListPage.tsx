@@ -2,8 +2,7 @@ import { Plus } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 
-import { useRemoveSearchParams } from "@/hooks/useRemoveSearchParams";
-
+import { useRemoveSearchParams } from "@/common/hooks/useRemoveSearchParams";
 import { MatchListItem } from "@/domains/match/components/MatchListItem";
 
 export enum MatchStatus {
