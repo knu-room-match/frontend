@@ -3,23 +3,8 @@ import { useState } from "react";
 import { SelectorWithLabelForm } from "@/components/forms/SelectorWithLabelForm";
 import { SliderWithLabelForm } from "@/components/forms/SliderWithLabelForm";
 import { Button } from "@/components/ui/button";
-import { Slider } from "@/components/ui/slider";
 
 import { useSection } from "@/common/hooks/useSection";
-
-export interface RegisterInfoRelationType {
-    roomMateRelation: string;
-    setRoomMateRelation: React.Dispatch<React.SetStateAction<string>>;
-
-    roomMateShare: string;
-    setRoomMateShare: React.Dispatch<React.SetStateAction<string>>;
-
-    friendsInvitation: string;
-    setFriendsInvitation: React.Dispatch<React.SetStateAction<string>>;
-
-    returnHomeFrequency: string;
-    setReturnHomeFrequency: React.Dispatch<React.SetStateAction<string>>;
-}
 
 export default function RegisterInfoRelationSection() {
     const { nextSection, prevSection } = useSection();

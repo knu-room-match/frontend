@@ -3,26 +3,6 @@ import { Button } from "@/components/ui/button";
 
 import { useSection } from "@/common/hooks/useSection";
 
-export interface RegisterInfoHobbyType {
-    studyArea: string;
-    setStudyArea: React.Dispatch<React.SetStateAction<string>>;
-
-    workoutFrequency: string;
-    setWorkoutFrequency: React.Dispatch<React.SetStateAction<string>>;
-
-    workoutTime: string;
-    setWorkoutTime: React.Dispatch<React.SetStateAction<string>>;
-
-    gameType: string;
-    setGameType: React.Dispatch<React.SetStateAction<string>>;
-
-    alcohol: string;
-    setAlcohol: React.Dispatch<React.SetStateAction<string>>;
-
-    smoking: string;
-    setSmoking: React.Dispatch<React.SetStateAction<string>>;
-}
-
 export default function RegisterInfoHobbySection() {
     const { prevSection, nextSection } = useSection();
 

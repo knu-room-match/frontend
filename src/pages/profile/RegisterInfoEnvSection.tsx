@@ -6,26 +6,6 @@ import { Button } from "@/components/ui/button";
 
 import { useSection } from "@/common/hooks/useSection";
 
-export interface RegisterInfoEnvType {
-    heat: number[];
-    setHeat: React.Dispatch<React.SetStateAction<number[]>>;
-
-    cold: number[];
-    setCold: React.Dispatch<React.SetStateAction<number[]>>;
-
-    dirty: number[];
-    setDirty: React.Dispatch<React.SetStateAction<number[]>>;
-
-    cleanCycle: string;
-    setCleanCycle: React.Dispatch<React.SetStateAction<string>>;
-
-    showerDuration: string;
-    setShowerDuration: React.Dispatch<React.SetStateAction<string>>;
-
-    bug: string;
-    setBug: React.Dispatch<React.SetStateAction<string>>;
-}
-
 export default function RegisterInfoEnvSection() {
     const { prevSection, nextSection } = useSection();
 
