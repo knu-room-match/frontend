@@ -16,7 +16,7 @@ export default function RegisterInfoRelationSection() {
     const registerInfo = useSelector((state: RootState) => state.registerInfo);
 
     return (
-        <div className="flex flex-col justify-between h-full">
+        <div className="flex flex-col justify-between h-full bg-white">
             <div>
                 <h1 className="my-2 text-2xl font-bold">생활 및 관계</h1>
 
@@ -42,7 +42,7 @@ export default function RegisterInfoRelationSection() {
                     placeholder="룸메이트와 물건공유 여부를 선택해주세요"
                     items={[
                         { value: "hate", label: "싫다" },
-                        { value: "approve", label: "사전허락" },
+                        { value: "approval", label: "사전허락" },
                         { value: "regardless", label: "상관없음" },
                     ]}
                     value={registerInfo.roomMateShare}
@@ -61,7 +61,7 @@ export default function RegisterInfoRelationSection() {
                     items={[
                         { value: "regardless", label: "상관없음" },
                         { value: "acquaintance", label: "아는사람만" },
-                        { value: "approve", label: "사전허락" },
+                        { value: "approval", label: "사전허락" },
                         { value: "싫음", label: "hate" },
                     ]}
                     value={registerInfo.friendsInvitation}
@@ -83,10 +83,11 @@ export default function RegisterInfoRelationSection() {
                         { value: "2weekly", label: "2주마다" },
                         { value: "monthly", label: "매달" },
                     ]}
+                    value={registerInfo.returnHomeFrequency}
                     onValueChange={(value) => {
                         dispatch(
                             registerInfoActions.setRegisterInfo({
-                                relationShip: value,
+                                returnHomeFrequency: value,
                             }),
                         );
                     }}

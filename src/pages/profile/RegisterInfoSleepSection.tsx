@@ -17,7 +17,7 @@ export default function RegisterInfoSleepSection() {
     const registerInfo = useSelector((state: RootState) => state.registerInfo);
 
     return (
-        <div className="flex flex-col justify-between h-full">
+        <div className="flex flex-col justify-between h-full bg-white">
             <div className="flex flex-col gap-2">
                 <h1 className="my-2 text-2xl font-bold">수면습관</h1>
                 <DoubleSliderWithLabelForm

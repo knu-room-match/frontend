@@ -16,7 +16,7 @@ export default function RegisterInfoEnvSection() {
     const registerInfo = useSelector((state: RootState) => state.registerInfo);
 
     return (
-        <div className="flex flex-col justify-between h-full">
+        <div className="flex flex-col justify-between h-full bg-white ">
             <div>
                 <h1 className="my-2 text-2xl font-bold">생활습관</h1>
 

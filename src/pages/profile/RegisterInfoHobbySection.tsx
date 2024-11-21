@@ -15,7 +15,7 @@ export default function RegisterInfoHobbySection() {
     const registerInfo = useSelector((state: RootState) => state.registerInfo);
 
     return (
-        <div className="flex flex-col justify-between h-full">
+        <div className="flex flex-col justify-between h-full bg-white">
             <div>
                 <h1 className="my-2 text-2xl font-bold">취미 및 활동</h1>
 
