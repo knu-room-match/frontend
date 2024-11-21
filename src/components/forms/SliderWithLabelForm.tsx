@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import { DualRangeSlider, DualRangeSliderProps, Slider } from "@/components/ui/slider";
+import { Slider } from "@/components/ui/slider";
 
 export interface SliderWithLabelFormProps {
     label: string;
@@ -51,28 +51,6 @@ export const SliderWithLabelForm = ({
                     <span className="text-sm text-gray-500">{minLabel}</span>
                     <span className="text-sm text-gray-500">{maxLabel}</span>
                 </div>
-            </div>
-        </div>
-    );
-};
-
-export interface DoubleSliderWithLabelFormProps extends DualRangeSliderProps {
-    formLabel: string;
-}
-
-export const DoubleSliderWithLabelForm = ({
-    formLabel,
-    ...dualRangeSliderProps
-}: DoubleSliderWithLabelFormProps) => {
-    return (
-        <div>
-            <p className="font-bold">{formLabel}</p>
-            <div className="px-2">
-                <DualRangeSlider
-                    className="pt-4 pb-10 text-gray-500"
-                    labelPosition="bottom"
-                    {...dualRangeSliderProps}
-                />
             </div>
         </div>
     );
