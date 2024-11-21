@@ -1,7 +1,6 @@
 import { CheckBoxWithLabelForm } from "./CheckBoxWithLabelForm";
-import { QuestionTypes } from "./Form";
+import { QuestionTypes } from "./FormRenderer";
 import { SelectorWithLabelForm } from "./SelectorWithLabelForm";
-import { DoubleSliderWithLabelForm, SliderWithLabelForm } from "./SliderWithLabelForm";
 
 export interface FormFactoryProps {
     questionType: keyof typeof QuestionTypes;
@@ -10,9 +9,9 @@ export interface FormFactoryProps {
 export const FormFactory = ({ questionType }: FormFactoryProps) => {
     const FormElements = {
         [QuestionTypes.selector]: SelectorWithLabelForm,
-        [QuestionTypes.slider]: SliderWithLabelForm,
-        [QuestionTypes.doubleSlider]: DoubleSliderWithLabelForm,
         [QuestionTypes.checkbox]: CheckBoxWithLabelForm,
+        // [QuestionTypes.slider]: SliderWithLabelForm,
+        // [QuestionTypes.doubleSlider]: DoubleSliderWithLabelForm,
     };
 
     return FormElements[questionType];

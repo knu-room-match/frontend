@@ -1,10 +1,10 @@
 import { Checkbox } from "@/components/ui/checkbox";
 
-import { FormState, Question } from "./Form";
+import { FormState, Question } from "./FormRenderer";
 
 // prettier-ignore
 export type CheckBoxWithLabelFormProps = 
-    Omit<Question<string>, "questionType" | "dataType"> &
+    Omit<Question, "questionType" | "dataType"> &
     FormState;
 
 export const CheckBoxWithLabelForm = ({
@@ -24,7 +24,9 @@ export const CheckBoxWithLabelForm = ({
                             data-testid={`checkbox_${option}`}
                             id={`checkbox_${option}`}
                             className="block w-5 h-5"
-                            checked={(formState[questionText] as Array<string>).includes(option)}
+                            checked={(formState[questionText] as Array<string>).includes(
+                                option as string,
+                            )}
                             onCheckedChange={(isChecked) => {
                                 if (isChecked) {
                                     setFormState({
@@ -44,7 +46,7 @@ export const CheckBoxWithLabelForm = ({
                                 }
                             }}
                         />
-                        <label htmlFor={`checkbox_${option}`}>{option}</label>
+                        <label htmlFor={`checkbox_${option}`}>{option as string}</label>
                     </div>
                 );
             })}

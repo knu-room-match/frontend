@@ -8,11 +8,11 @@ import {
     SelectValue,
 } from "@/components/ui/select";
 
-import { FormState, Question } from "./Form";
+import { FormState, Question } from "./FormRenderer";
 
 // prettier-ignore
 export type SelectorWithLabelFormProps = 
-    Omit<Question<string>, "questionType" | "dataType"> &
+    Omit<Question, "questionType" | "dataType"> &
     FormState
 
 export const SelectorWithLabelForm = ({
@@ -33,22 +33,22 @@ export const SelectorWithLabelForm = ({
                 onValueChange={(value) =>
                     setFormState({
                         ...formState,
-                        [questionText]: value,
+                        [questionText]: [value],
                     })
                 }
             >
                 <SelectTrigger className="w-full rounded-xl" asChild={false}>
-                    <SelectValue placeholder="옵션을 선택해주세요" />
+                    <SelectValue placeholder="옵션을 선택해주세요"></SelectValue>
                 </SelectTrigger>
                 <SelectContent id={htmlFor}>
                     {options.map((option, index) => {
                         return (
                             <SelectItem
                                 key={index}
-                                value={option}
+                                value={option as string}
                                 data-testid={`select-options_${option}`}
                             >
-                                {option}
+                                {option as string}
                             </SelectItem>
                         );
                     })}
