@@ -9,7 +9,7 @@ export const QuestionTypes = {
 
 export interface Option {
     label?: string;
-    value: string;
+    value: any;
 }
 
 export interface Question {
