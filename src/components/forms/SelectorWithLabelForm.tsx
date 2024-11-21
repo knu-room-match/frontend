@@ -46,7 +46,7 @@ export const SelectorWithLabelForm = ({
                             <SelectItem
                                 key={index}
                                 value={option.value as string}
-                                data-testid={`select-options_${index + 1}`}
+                                data-testid={`select-options_${option.label}`}
                             >
                                 {option.label as string}
                             </SelectItem>

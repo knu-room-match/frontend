@@ -1,3 +1,5 @@
+import { useId } from "react";
+
 import { Checkbox } from "@/components/ui/checkbox";
 
 import { FormState, Question } from "./FormRenderer";
@@ -13,6 +15,8 @@ export const CheckBoxWithLabelForm = ({
     formState,
     setFormState,
 }: CheckBoxWithLabelFormProps) => {
+    const htmlFor = useId();
+
     return (
         <div className="flex flex-col gap-1" data-testid="checkbox-with-label-form">
             <p className="font-bold">{questionText}</p>
@@ -22,7 +26,7 @@ export const CheckBoxWithLabelForm = ({
                     <div key={index} className="flex items-center gap-1">
                         <Checkbox
                             data-testid={`checkbox_${option.label}`}
-                            id={`checkbox_${option.label}`}
+                            id={htmlFor}
                             className="block w-5 h-5"
                             checked={formState[questionText]
                                 .map((state) => state.value)
@@ -47,7 +51,7 @@ export const CheckBoxWithLabelForm = ({
                                 }
                             }}
                         />
-                        <label htmlFor={`checkbox_${option}`}>{option.label}</label>
+                        <label htmlFor={`checkbox_${option.label}`}>{option.label}</label>
                     </div>
                 );
             })}

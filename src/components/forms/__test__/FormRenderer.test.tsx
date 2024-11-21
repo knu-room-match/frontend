@@ -1,6 +1,17 @@
 import { FormProps, FormRenderer } from "../FormRenderer";
 import { fireEvent, render, screen } from "@testing-library/react";
 
+/**
+ * Each Element's following options data-testid and id
+ *
+ * <CheckBoxWithLabelForm/>
+ * id : checkbox_{option.label}
+ * data-testid : checkbox_{option.label}
+ *
+ * <SelectorWithLabelForm/>
+ * data-testid : select-options_{option.label}
+ *
+ */
 describe("<FormRenderer/>", () => {
     describe("<SelectorWithLabelForm/>", () => {
         const formState = {
@@ -17,7 +28,11 @@ describe("<FormRenderer/>", () => {
                         questionText: "test-question-selector",
                         questionType: "selector",
                         dataType: "string",
-                        options: ["options1", "options2", "options3"],
+                        options: [
+                            { label: "options1", value: "options1" },
+                            { label: "options2", value: "options2" },
+                            { label: "options3", value: "options3" },
+                        ],
                     },
                 ],
             };
@@ -53,7 +68,7 @@ describe("<FormRenderer/>", () => {
 
                 expect(setFormState).toHaveBeenCalledWith({
                     ...formState,
-                    "test-question-selector": [option],
+                    "test-question-selector": [{ value: option }],
                 });
             });
         });
@@ -74,7 +89,11 @@ describe("<FormRenderer/>", () => {
                         questionText: "test-question-checkbox",
                         questionType: "checkbox",
                         dataType: "number",
-                        options: [1, 2, 3],
+                        options: [
+                            { label: "options1", value: 1 },
+                            { label: "options2", value: 2 },
+                            { label: "options3", value: 3 },
+                        ],
                     },
                 ],
             };
@@ -99,7 +118,7 @@ describe("<FormRenderer/>", () => {
         });
 
         test("should call setFormState once when checkbox is clicked", async () => {
-            const checkbox = await screen.findByTestId("checkbox_1");
+            const checkbox = await screen.findByTestId(`checkbox_options1`);
             expect(checkbox.getAttribute("data-state")).toBe("unchecked");
 
             fireEvent.click(checkbox);
@@ -107,7 +126,7 @@ describe("<FormRenderer/>", () => {
         });
 
         test("should call setFormState twice when checkbox is clicked twice", async () => {
-            const checkbox = await screen.findByTestId("checkbox_1");
+            const checkbox = await screen.findByTestId("checkbox_options1");
 
             fireEvent.click(checkbox);
             expect(setFormState).toHaveBeenCalledTimes(1);
@@ -117,14 +136,14 @@ describe("<FormRenderer/>", () => {
         });
 
         test("should call setFormState with appropriate values", () => {
-            const checkboxes = [1, 2, 3];
+            const checkboxes = [{ label: "options1" }];
 
             checkboxes.forEach((checkbox) => {
-                fireEvent.click(screen.getByTestId(`checkbox_${checkbox}`));
+                fireEvent.click(screen.getByTestId(`checkbox_${checkbox.label}`));
 
                 expect(setFormState).toHaveBeenCalledWith({
                     ...formState,
-                    "test-question-checkbox": [checkbox],
+                    "test-question-checkbox": [{ value: true }],
                 });
             });
         });
