@@ -6,6 +6,10 @@ on:
 
 jobs:
     unit-test:
+        strategy:
+            matrix:
+                node-version: [18, 22]
+
         runs-on: ubuntu-latest
         steps:
             - name: Checkout Code
@@ -14,7 +18,7 @@ jobs:
             - name: Set up Node.js
               uses: actions/setup-node@v4
               with:
-                  node-version: 22
+                  node-version: ${{matrix.node-version}}
 
             - name: Install Yarn Package Manager
               run: npm install -g yarn
