@@ -1,4 +1,5 @@
 import { CheckBoxWithLabelForm } from "../CheckBoxWithLabelForm";
+import "@testing-library/jest-dom";
 import { screen, render, fireEvent } from "@testing-library/react";
 
 describe("<CheckBoxWithLabelForm/>", () => {
