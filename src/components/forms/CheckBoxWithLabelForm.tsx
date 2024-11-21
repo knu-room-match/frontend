@@ -2,11 +2,6 @@ import { Checkbox } from "@/components/ui/checkbox";
 
 import { FormState, Question } from "./Form";
 
-export type CheckBoxItem = {
-    id: string;
-    label: string;
-};
-
 // prettier-ignore
 export type CheckBoxWithLabelFormProps = 
     Omit<Question<string>, "questionType" | "dataType"> &
