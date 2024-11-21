@@ -38,7 +38,7 @@ describe("<SelectorWithLabelForm/>", () => {
 
             expect(setFormState).toHaveBeenCalledWith({
                 ...formState,
-                "test-question-selector": option,
+                "test-question-selector": [option],
             });
         });
     });
