@@ -1,48 +1,57 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import { Checkbox } from "@/components/ui/checkbox";
+
+import { FormState, Question } from "./Form";
 
 export type CheckBoxItem = {
     id: string;
     label: string;
 };
 
-export interface RadioWithLabelFormProps {
-    label: string;
-    items: CheckBoxItem[];
-    checkedValues: string[];
-    onCheckedValuesChange?: (checkedIds: string[]) => void;
-}
+// prettier-ignore
+export type CheckBoxWithLabelFormProps = 
+    Omit<Question<string>, "questionType" | "dataType"> &
+    FormState;
 
 export const CheckBoxWithLabelForm = ({
-    label,
-    items,
-    checkedValues,
-    onCheckedValuesChange,
-}: RadioWithLabelFormProps) => {
-    const [checked, setChecked] = useState<string[]>(checkedValues);
-
-    useEffect(() => {
-        onCheckedValuesChange && onCheckedValuesChange(checked);
-    }, [checked]);
-
+    questionText,
+    options,
+    formState,
+    setFormState,
+}: CheckBoxWithLabelFormProps) => {
     return (
-        <div className="flex flex-col gap-1">
-            <p className="font-bold">{label}</p>
+        <div className="flex flex-col gap-1" data-testid="checkbox-with-label-form">
+            <p className="font-bold">{questionText}</p>
 
-            {items.map((item) => {
+            {options.map((option, index) => {
                 return (
-                    <div className="flex items-center gap-1">
+                    <div key={index} className="flex items-center gap-1">
                         <Checkbox
-                            id={item.id}
+                            data-testid={`checkbox_${option}`}
+                            id={`checkbox_${option}`}
                             className="block w-5 h-5"
-                            checked={checked.includes(item.id)}
+                            checked={(formState[questionText] as Array<string>).includes(option)}
                             onCheckedChange={(isChecked) => {
-                                if (isChecked) setChecked([...checked, item.id]);
-                                else setChecked(checked.filter((id) => id !== item.id));
+                                if (isChecked) {
+                                    setFormState({
+                                        ...formState,
+                                        [questionText]: [
+                                            ...(formState[questionText] as Array<string>),
+                                            option,
+                                        ],
+                                    });
+                                } else {
+                                    setFormState({
+                                        ...formState,
+                                        [questionText]: (
+                                            formState[questionText] as Array<string>
+                                        ).filter((item) => item !== option),
+                                    });
+                                }
                             }}
                         />
-                        <label htmlFor={item.id}>{item.label}</label>
+                        <label htmlFor={`checkbox_${option}`}>{option}</label>
                     </div>
                 );
             })}
