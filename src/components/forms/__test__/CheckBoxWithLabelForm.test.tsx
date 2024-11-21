@@ -4,15 +4,21 @@ import { screen, render, fireEvent } from "@testing-library/react";
 
 describe("<CheckBoxWithLabelForm/>", () => {
     const formState = {
-        "test-question-text": [],
+        "test-question-text": [{ value: "" }],
     };
     const setFormState = jest.fn();
+
+    const options = [
+        { label: "options1", value: "options1" },
+        { label: "options2", value: "options2" },
+        { label: "options3", value: "options3" },
+    ];
 
     beforeEach(() => {
         render(
             <CheckBoxWithLabelForm
                 questionText={"test-question-text"}
-                options={["options1", "options2", "options3"]}
+                options={options}
                 formState={formState}
                 setFormState={setFormState}
             />,

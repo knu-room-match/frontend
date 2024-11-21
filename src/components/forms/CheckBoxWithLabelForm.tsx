@@ -21,32 +21,33 @@ export const CheckBoxWithLabelForm = ({
                 return (
                     <div key={index} className="flex items-center gap-1">
                         <Checkbox
-                            data-testid={`checkbox_${option}`}
-                            id={`checkbox_${option}`}
+                            data-testid={`checkbox_${option.label}`}
+                            id={`checkbox_${option.label}`}
                             className="block w-5 h-5"
-                            checked={(formState[questionText] as Array<string>).includes(
-                                option as string,
-                            )}
+                            checked={formState[questionText]
+                                .map((state) => state.value)
+                                .includes(option.value)}
                             onCheckedChange={(isChecked) => {
                                 if (isChecked) {
                                     setFormState({
                                         ...formState,
                                         [questionText]: [
-                                            ...(formState[questionText] as Array<string>),
-                                            option,
+                                            ...formState[questionText],
+                                            { value: true },
                                         ],
                                     });
                                 } else {
                                     setFormState({
                                         ...formState,
-                                        [questionText]: (
-                                            formState[questionText] as Array<string>
-                                        ).filter((item) => item !== option),
+                                        [questionText]: [
+                                            ...formState[questionText],
+                                            { value: false },
+                                        ],
                                     });
                                 }
                             }}
                         />
-                        <label htmlFor={`checkbox_${option}`}>{option as string}</label>
+                        <label htmlFor={`checkbox_${option}`}>{option.label}</label>
                     </div>
                 );
             })}
