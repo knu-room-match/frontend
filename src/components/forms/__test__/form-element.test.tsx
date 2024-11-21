@@ -20,6 +20,10 @@ describe("FormElements", () => {
             );
         });
 
+        afterEach(() => {
+            jest.clearAllMocks();
+        });
+
         test("should render Container properly", () => {
             expect(screen.getByTestId("checkbox-with-label-form")).toBeInTheDocument();
         });
@@ -33,6 +37,16 @@ describe("FormElements", () => {
         test("should call setFormState once when checkbox is clicked", async () => {
             const checkbox = await screen.findByTestId("checkbox_options1");
             expect(checkbox.getAttribute("data-state")).toBe("unchecked");
+
+            fireEvent.click(checkbox);
+            expect(setFormState).toHaveBeenCalledTimes(1);
+        });
+
+        test("should call setFormState twice when checkbox is clicked twice", async () => {
+            const checkbox = await screen.findByTestId("checkbox_options1");
+
+            fireEvent.click(checkbox);
+            expect(setFormState).toHaveBeenCalledTimes(1);
 
             fireEvent.click(checkbox);
             expect(setFormState).toHaveBeenCalledTimes(2);
