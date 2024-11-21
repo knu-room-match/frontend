@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 import { FormFactory } from "./FormFactory";
 
 export const QuestionTypes = {
@@ -9,11 +7,16 @@ export const QuestionTypes = {
     // doubleSlider: "doubleSlider",
 } as const;
 
+export interface Option {
+    label?: string;
+    value: string;
+}
+
 export interface Question {
     questionText: string;
     questionType: keyof typeof QuestionTypes;
     dataType: string;
-    options: unknown[];
+    options: Option[];
 }
 
 export interface FormProps {
@@ -23,8 +26,8 @@ export interface FormProps {
 }
 
 export interface FormState {
-    formState: Record<string, unknown>;
-    setFormState: React.Dispatch<React.SetStateAction<Record<string, unknown>>>;
+    formState: Record<string, Option[]>;
+    setFormState: React.Dispatch<React.SetStateAction<Record<string, Option[]>>>;
 }
 
 export type FormRendererProps = FormProps & FormState;
