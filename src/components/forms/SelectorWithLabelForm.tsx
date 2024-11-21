@@ -29,11 +29,11 @@ export const SelectorWithLabelForm = ({
                 {questionText}
             </label>
             <Select
-                value={formState[questionText] as string}
-                onValueChange={(value) =>
+                value={formState[questionText][0].value}
+                onValueChange={(option) =>
                     setFormState({
                         ...formState,
-                        [questionText]: [value],
+                        [questionText]: [{ value: option }],
                     })
                 }
             >
@@ -45,10 +45,10 @@ export const SelectorWithLabelForm = ({
                         return (
                             <SelectItem
                                 key={index}
-                                value={option as string}
-                                data-testid={`select-options_${option}`}
+                                value={option.value as string}
+                                data-testid={`select-options_${index + 1}`}
                             >
-                                {option as string}
+                                {option.label as string}
                             </SelectItem>
                         );
                     })}
