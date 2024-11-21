@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 import { Checkbox } from "@/components/ui/checkbox";
 
 import { FormState, Question } from "./Form";
