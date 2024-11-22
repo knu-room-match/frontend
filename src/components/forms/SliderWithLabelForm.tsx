@@ -1,55 +1,47 @@
-import { useEffect, useState } from "react";
-
 import { Slider } from "@/components/ui/slider";
 
-export interface SliderWithLabelFormProps {
-    label: string;
-    minLabel: string;
-    maxLabel: string;
+import { FormState, Question } from "./FormRenderer";
 
-    minValue: number;
-    maxValue: number;
-    step: number;
+// prettier-ignore
+export type SliderWithLabelFormProps = 
+    Omit<Question, "questionType" | "dataType"> &
+    FormState;
 
-    value: number[];
-    onChange: (value: number[]) => void;
-}
+/**
+ * 기본 인자
+ */
 
 export const SliderWithLabelForm = ({
-    label,
-    minLabel,
-    maxLabel,
-    minValue,
-    maxValue,
-    step,
-
-    value,
-    onChange,
+    questionText,
+    options,
+    formState,
+    setFormState,
 }: SliderWithLabelFormProps) => {
-    const [sliderValue, setSliderValue] = useState<number[]>(value);
-
-    useEffect(
-        function onSliderValueChange() {
-            onChange(sliderValue);
-        },
-        [sliderValue],
-    );
+    const min = options[0];
+    const max = options[options.length - 1];
 
     return (
         <div>
-            <p className="font-bold">{label}</p>
+            <p className="font-bold">{questionText}</p>
             <div className="px-2">
                 <Slider
+                    data-testid="slider-with-label-form"
                     className="pt-4 text-gray-500"
-                    value={sliderValue}
-                    onValueChange={setSliderValue}
-                    min={minValue}
-                    max={maxValue}
-                    step={step}
+                    defaultValue={[formState[questionText][0].value]}
+                    value={[formState[questionText][0].value]}
+                    onValueChange={(value) => {
+                        setFormState({
+                            ...formState,
+                            [questionText]: [{ value: value[0] }],
+                        });
+                    }}
+                    min={min.value}
+                    max={max.value}
+                    step={1}
                 />
                 <div className="flex justify-between my-1">
-                    <span className="text-sm text-gray-500">{minLabel}</span>
-                    <span className="text-sm text-gray-500">{maxLabel}</span>
+                    <span className="text-sm text-gray-500">{min.label}</span>
+                    <span className="text-sm text-gray-500">{max.label}</span>
                 </div>
             </div>
         </div>
