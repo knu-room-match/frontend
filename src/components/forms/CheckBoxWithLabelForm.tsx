@@ -37,16 +37,15 @@ export const CheckBoxWithLabelForm = ({
                                         ...formState,
                                         [questionText]: [
                                             ...formState[questionText],
-                                            { value: true },
+                                            { value: option.value },
                                         ],
                                     });
                                 } else {
                                     setFormState({
                                         ...formState,
-                                        [questionText]: [
-                                            ...formState[questionText],
-                                            { value: false },
-                                        ],
+                                        [questionText]: formState[questionText].filter(
+                                            (state) => state.value !== option.value,
+                                        ),
                                     });
                                 }
                             }}
