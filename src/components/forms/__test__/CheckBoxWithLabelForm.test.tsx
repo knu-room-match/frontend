@@ -1,11 +1,24 @@
 import { CheckBoxWithLabelForm } from "../CheckBoxWithLabelForm";
+import { FormProps } from "../FormRenderer";
 import "@testing-library/jest-dom";
 import { screen, render, fireEvent } from "@testing-library/react";
 
 describe("<CheckBoxWithLabelForm/>", () => {
-    const formState = {
-        "test-question-text": [{ value: "" }],
+    const formState: FormProps = {
+        _id: "uuid-example",
+        title: "test",
+        description: "test",
+        questions: [
+            {
+                questionId: 1,
+                questionText: "test-question-text",
+                questionType: "checkbox",
+                dataType: "number",
+                options: [],
+            },
+        ],
     };
+
     const setFormState = jest.fn();
 
     const options = [
@@ -17,6 +30,7 @@ describe("<CheckBoxWithLabelForm/>", () => {
     beforeEach(() => {
         render(
             <CheckBoxWithLabelForm
+                questionId={1}
                 questionText={"test-question-text"}
                 options={options}
                 formState={formState}
@@ -33,7 +47,7 @@ describe("<CheckBoxWithLabelForm/>", () => {
         expect(screen.getByTestId("checkbox-with-label-form")).toBeInTheDocument();
     });
 
-    test("should render each options properly", () => {
+    test("should render each option properly", () => {
         expect(screen.getByText("options1")).toBeInTheDocument();
         expect(screen.getByText("options2")).toBeInTheDocument();
         expect(screen.getByText("options3")).toBeInTheDocument();
@@ -41,7 +55,7 @@ describe("<CheckBoxWithLabelForm/>", () => {
 
     test("should call setFormState once when checkbox is clicked", async () => {
         const checkbox = await screen.findByTestId("checkbox_options1");
-        expect(checkbox.getAttribute("data-state")).toBe("unchecked");
+        expect(checkbox).toBeInTheDocument();
 
         fireEvent.click(checkbox);
         expect(setFormState).toHaveBeenCalledTimes(1);

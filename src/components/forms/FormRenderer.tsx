@@ -3,8 +3,8 @@ import { FormFactory } from "./FormFactory";
 export const QuestionTypes = {
     checkbox: "checkbox",
     selector: "selector",
-    // slider: "slider",
-    // doubleSlider: "doubleSlider",
+    slider: "slider",
+    doubleSlider: "doubleSlider",
 } as const;
 
 export interface Option {
@@ -13,6 +13,7 @@ export interface Option {
 }
 
 export interface Question {
+    questionId: number;
     questionText: string;
     questionType: keyof typeof QuestionTypes;
     dataType: string;
@@ -20,19 +21,21 @@ export interface Question {
 }
 
 export interface FormProps {
+    _id: string;
     title: string;
     description: string;
     questions: Question[];
 }
 
 export interface FormState {
-    formState: Record<string, Option[]>;
-    setFormState: React.Dispatch<React.SetStateAction<Record<string, Option[]>>>;
+    formState: FormProps;
+    setFormState: React.Dispatch<React.SetStateAction<FormProps>>;
 }
 
 export type FormRendererProps = FormProps & FormState;
 
 export const FormRenderer = ({
+    _id,
     title,
     description,
     questions,

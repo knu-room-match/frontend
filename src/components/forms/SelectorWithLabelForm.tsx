@@ -8,14 +8,19 @@ import {
     SelectValue,
 } from "@/components/ui/select";
 
-import { FormState, Question } from "./FormRenderer";
+import { FormProps, FormState, Question, Option } from "./FormRenderer";
 
 // prettier-ignore
-export type SelectorWithLabelFormProps = 
-    Omit<Question, "questionType" | "dataType"> &
-    FormState
+export type SelectorWithLabelFormProps = {
+    questionId: number;
+    questionText: string;
+    options: Option[];
+    formState: FormProps;
+    setFormState: React.Dispatch<React.SetStateAction<FormProps>>;
+};
 
 export const SelectorWithLabelForm = ({
+    questionId,
     questionText,
     options,
     formState,
@@ -23,19 +28,28 @@ export const SelectorWithLabelForm = ({
 }: SelectorWithLabelFormProps) => {
     const htmlFor = useId();
 
+    const questionIndex = formState.questions.findIndex((q) => q.questionId === questionId);
+
+    const selectedValue = formState.questions[questionIndex].options[0]?.value || "";
+
     return (
         <div data-testid="selector-with-label-form">
             <label className="py-1 font-bold" htmlFor={htmlFor}>
                 {questionText}
             </label>
             <Select
-                value={formState[questionText][0].value}
-                onValueChange={(option) =>
-                    setFormState({
-                        ...formState,
-                        [questionText]: [{ value: option }],
-                    })
-                }
+                value={selectedValue}
+                onValueChange={(selectedValue) => {
+                    const selectedOption = options.find((option) => option.value === selectedValue);
+                    const updatedFormState = { ...formState };
+                    updatedFormState.questions[questionIndex].options = [
+                        {
+                            label: selectedOption?.label || "",
+                            value: selectedValue,
+                        },
+                    ];
+                    setFormState(updatedFormState);
+                }}
             >
                 <SelectTrigger className="w-full rounded-xl" asChild={false}>
                     <SelectValue placeholder="옵션을 선택해주세요"></SelectValue>
