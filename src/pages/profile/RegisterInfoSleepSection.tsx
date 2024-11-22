@@ -4,8 +4,8 @@ import { registerInfoActions } from "@/apps/store/register-info.slice";
 import { RootDispatch, RootState } from "@/apps/store/store";
 
 import { CheckBoxWithLabelForm } from "@/components/forms/CheckBoxWithLabelForm";
+import { DoubleSliderWithLabelForm } from "@/components/forms/DoubleSliderWithLabelForm";
 import { SelectorWithLabelForm } from "@/components/forms/SelectorWithLabelForm";
-import { DoubleSliderWithLabelForm } from "@/components/forms/SliderWithLabelForm";
 import { Button } from "@/components/ui/button";
 
 import { useSection } from "@/common/hooks/useSection";

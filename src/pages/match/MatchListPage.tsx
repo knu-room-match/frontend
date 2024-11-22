@@ -1,10 +1,9 @@
-import { useState } from "react";
-
 import { Plus } from "lucide-react";
+
+import { Screen, useFlow } from "@/apps/stackflow";
 
 import { Button } from "@/components/ui/button";
 
-import { useRemoveSearchParams } from "@/common/hooks/useRemoveSearchParams";
 import { MatchListItem } from "@/domains/match/components/MatchListItem";
 
 const dummyData = [
@@ -89,31 +88,25 @@ export enum MatchStatus {
 }
 
 export default function MatchListPage() {
-    useRemoveSearchParams();
-
-    const [isOpen, setIsOpen] = useState<boolean>(true);
-
+    const { push } = useFlow();
     return (
-        <div>
-            <div className="fixed bottom-8 right-8">
-                <Button className="rounded-full ">
-                    <Plus size={20} />
-                    룸메이트 구하기
-                </Button>
+        <Screen>
+            <div>
+                {dummyData.map((data) => {
+                    return (
+                        <MatchListItem
+                            title={data.title}
+                            dormitory={data.dormitory}
+                            description={data.description}
+                            currentQuota={data.currentQuota}
+                            maxQuota={data.maxQuota}
+                            onClick={() => {
+                                push("MatchDeatilPage", {});
+                            }}
+                        />
+                    );
+                })}
             </div>
-
-            {dummyData.map((data) => {
-                return (
-                    <MatchListItem
-                        title={data.title}
-                        dormitory={data.dormitory}
-                        description={data.description}
-                        currentQuota={data.currentQuota}
-                        maxQuota={data.maxQuota}
-                        onClick={() => setIsOpen(true)}
-                    />
-                );
-            })}
-        </div>
+        </Screen>
     );
 }
