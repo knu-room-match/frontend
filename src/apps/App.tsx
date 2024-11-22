@@ -1,14 +1,15 @@
 import { Provider } from "react-redux";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-import { router } from "./Router";
+import { Stack } from "./stackflow";
 import { store } from "./store/store";
 import "./styles/tailwind.css";
 
 export default function App() {
     return (
         <Provider store={store}>
-            <RouterProvider router={createBrowserRouter(router)} />
+            <main className="w-full max-w-[500px] mx-auto h-screen border-[1px]">
+                <Stack />
+            </main>
         </Provider>
     );
 }
