@@ -8,7 +8,7 @@ import {
     SelectValue,
 } from "@/components/ui/select";
 
-import { FormProps, FormState, Question, Option } from "./FormRenderer";
+import { FormProps, Option } from "./FormRenderer";
 
 // prettier-ignore
 export type SelectorWithLabelFormProps = {

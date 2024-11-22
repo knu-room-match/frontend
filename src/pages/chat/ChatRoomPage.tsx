@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+// import { useParams } from "react-router-dom";
 import { Fragment } from "react/jsx-runtime";
 
 import { Send } from "lucide-react";
@@ -10,7 +10,7 @@ import { Input } from "@/components/ui/input";
 import { ChatItem } from "@/domains/chat/components/ChatItem";
 
 export default function ChatRoomPage() {
-    const { id } = useParams();
+    // const { id } = useParams();
 
     return (
         <Fragment>

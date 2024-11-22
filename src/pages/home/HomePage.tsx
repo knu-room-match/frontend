@@ -27,7 +27,7 @@ export default function HomePage() {
                         <p className="text-white">경북대학교 룸메이트 매칭 서비스</p>
                     </div>
                     <div className="flex flex-col gap-3 mb-6">
-                        <Button variant="default" onClick={() => replace("MatchListPage")}>
+                        <Button variant="default" onClick={() => replace("MatchListPage", {})}>
                             로그인
                         </Button>
                         <Button variant="outline" onClick={() => undefined}>

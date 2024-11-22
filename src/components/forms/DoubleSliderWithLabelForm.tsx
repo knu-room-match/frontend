@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 import { DualRangeSlider } from "../ui/slider";
 import { FormState, Question } from "./FormRenderer";
 

@@ -34,14 +34,7 @@ export interface FormState {
 
 export type FormRendererProps = FormProps & FormState;
 
-export const FormRenderer = ({
-    _id,
-    title,
-    description,
-    questions,
-    formState,
-    setFormState,
-}: FormRendererProps) => {
+export const FormRenderer = ({ questions, formState, setFormState }: FormRendererProps) => {
     const forms = questions.map((question) => {
         return {
             component: FormFactory({ questionType: question.questionType }),

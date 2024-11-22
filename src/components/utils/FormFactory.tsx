@@ -23,7 +23,7 @@ export interface createFormItemOptions {
 }
 
 export interface IFormItemFactory {
-    createFormItem({ formType }): React.ComponentType;
+    // createFormItem({ formType }): React.ComponentType;
 }
 
 export class FormFactory implements IFormItemFactory {

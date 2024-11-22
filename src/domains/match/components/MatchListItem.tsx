@@ -1,13 +1,4 @@
-import { useSelector } from "react-redux";
-
 import { House, Users } from "lucide-react";
-import { Drawer } from "vaul";
-
-import { RootState } from "@/apps/store/store";
-
-import { Button } from "@/components/ui/button";
-
-import { ParticipatingUserCardList } from "./ParticipatingUserCardList";
 
 export interface MatchListItemProps extends React.ComponentProps<"div"> {
     title: string;
