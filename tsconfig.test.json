@@ -1,11 +1,12 @@
 {
     "compilerOptions": {
-        "typeRoots": ["node_modules/@types", "src/@types"],
-        "types": ["jest", "@testing-library/jest-dom"],
+        "types": ["jest"],
 
         "esModuleInterop": true,
         "jsx": "react-jsx",
         "allowJs": true,
+
+        "noEmit": true,
 
         "baseUrl": ".",
         "paths": {
