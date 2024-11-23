@@ -27,5 +27,7 @@ export interface IFormItemFactory {
 }
 
 export class FormFactory implements IFormItemFactory {
+    private readonly formTypes: FormType;
+
     public static createFormComponent() {}
 }

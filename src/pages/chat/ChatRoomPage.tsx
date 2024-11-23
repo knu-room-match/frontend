@@ -1,4 +1,3 @@
-import { useParams } from "react-router-dom";
 import { Fragment } from "react/jsx-runtime";
 
 import { Send } from "lucide-react";
@@ -10,8 +9,6 @@ import { Input } from "@/components/ui/input";
 import { ChatItem } from "@/domains/chat/components/ChatItem";
 
 export default function ChatRoomPage() {
-    const { id } = useParams();
-
     return (
         <Fragment>
             <NavChatTop title={"채팅방 이름"} currentQuota={0} maxQuota={0} />
