@@ -12,6 +12,8 @@ export interface Option {
     value: any;
 }
 
+const str: A = "a";
+
 export interface Question {
     questionId: number;
     questionText: string;
@@ -20,7 +22,7 @@ export interface Question {
     options: Option[];
 }
 
-export interface FormProps {
+export interface Form {
     _id: string;
     title: string;
     description: string;
@@ -28,28 +30,25 @@ export interface FormProps {
 }
 
 export interface FormState {
-    formState: FormProps;
-    setFormState: React.Dispatch<React.SetStateAction<FormProps>>;
+    formState: Form;
+    setFormState: React.Dispatch<React.SetStateAction<Form>>;
 }
 
-export type FormRendererProps = FormProps & FormState;
+export interface FormRendererProps {
+    questions: Question[];
+    formState: Form;
+    setFormState: React.Dispatch<React.SetStateAction<Form>>;
+}
 
-export const FormRenderer = ({
-    _id,
-    title,
-    description,
-    questions,
-    formState,
-    setFormState,
-}: FormRendererProps) => {
-    const forms = questions.map((question) => {
+export const FormItemsRenderer = ({ questions, formState, setFormState }: FormRendererProps) => {
+    const formItems = questions.map((question) => {
         return {
             component: FormFactory({ questionType: question.questionType }),
             props: question,
         };
     });
 
-    return (
-        <div>{forms.map((form) => form.component({ ...form.props, formState, setFormState }))}</div>
-    );
+    return formItems.map((formItem) => {
+        return formItem.component({ ...formItem.props, formState, setFormState });
+    });
 };
